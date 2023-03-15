@@ -9,7 +9,12 @@ import morgan from 'morgan'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import authRoutes from './routes/auth.js'
+import userRoutes from './routes/users.js'
+import postRoutes from './routes/posts.js'
+import { createPost } from './controllers/posts.js'
 import { signup } from "./controllers/auth.js";
+import { verifyToken } from './middleware/auth.js'
+
 
 // configs: 
 const __filename = fileURLToPath(import.meta.url)
@@ -39,9 +44,15 @@ const upload = multer({storage})
 //ROUTES w/ files
   /* NOTE: not moving this route to routes dir b/c we need multer's upload middleware */
 app.post("/auth/register", upload.single("picture"), signup);
+app.post('/posts', verifyToken, upload.single("picture"), createPost) 
 
 /* ROUTES */
+  //Auth routes:
 app.use("/auth", authRoutes);
+  //User routes:
+app.use('/users', userRoutes);
+  //Post routes
+app.use('/posts', postRoutes);
 
 
 // Mongoose setup 
