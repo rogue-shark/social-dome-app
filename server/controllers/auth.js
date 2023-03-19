@@ -19,8 +19,10 @@ export const signup = async (req, res) => {
       const salt = await bcrypt.genSalt()
       const passwordHash = await bcrypt.hash(req.body.password, salt)
 
+      //CREATING NEW USER - data coming in from client side - register form
       const newUser = new User({
         ...req.body,
+        //hashing password
         password: passwordHash,
         viewedProfile: Math.floor(Math.random() * 1000),
         impressions: Math.floor(Math.random() * 1000)
@@ -36,6 +38,7 @@ export const signup = async (req, res) => {
 // Login
 export const login = async (req, res) => {
     try {
+      //USER Auth - data coming in from client side - login form
        const { email, password } = req.body
        const user = await User.findOne({ email }) //i.e email: email
        if (!user) return res.status(400).json({ msg: 'User does not exist.' }) 
