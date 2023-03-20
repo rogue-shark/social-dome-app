@@ -9,6 +9,7 @@ export const verifyToken = async (req, res, next) => {
             res.status(403).send('Access Denied!')
         }
 
+        //req sent from UserProfileWidget.jsx
         if (token.startsWith('Bearer ')) {
             token = token.slice(7, token.length).trimLeft()
         }
