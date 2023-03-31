@@ -120,8 +120,8 @@ import {
   
         <Divider sx={{ margin: "1.25rem 0" }} />
   
-        <FlexBetween>
-          <FlexBetween gap="0.25rem" onClick={() => setIsImage(!isImage)}>
+        <FlexBetween gap=".5rem">
+          <FlexBetween  onClick={() => setIsImage(!isImage)}>
             <ImageOutlined sx={{ color: mediumMain }} />
             <Typography
               color={mediumMain}
@@ -133,23 +133,23 @@ import {
   
           {isNonMobileScreens ? (
             <>
-              <FlexBetween gap="0.25rem">
+              <FlexBetween >
                 <GifBoxOutlined sx={{ color: mediumMain }} />
                 <Typography color={mediumMain}>Clip</Typography>
               </FlexBetween>
   
-              <FlexBetween gap="0.25rem">
+              <FlexBetween >
                 <AttachFileOutlined sx={{ color: mediumMain }} />
                 <Typography color={mediumMain}>Attachment</Typography>
               </FlexBetween>
   
-              <FlexBetween gap="0.25rem">
+              <FlexBetween >
                 <MicOutlined sx={{ color: mediumMain }} />
                 <Typography color={mediumMain}>Audio</Typography>
               </FlexBetween>
             </>
           ) : (
-            <FlexBetween gap="0.25rem">
+            <FlexBetween >
               <MoreHorizOutlined sx={{ color: mediumMain }} />
             </FlexBetween>
           )}
@@ -158,12 +158,18 @@ import {
             disabled={!post}
             onClick={handlePost}
             sx={{
-              color: palette.background.alt,
-              backgroundColor: palette.primary.main,
+              color: 'black',
+              backgroundColor: palette.primary.lightMain,
               borderRadius: "3rem",
+              fontWeight: '600',
+              cursor: 'pointer',
+              '&:hover': {
+                backgroundColor: palette.primary.dark,
+                color: '#fff'
+              }
             }}
           >
-            POST
+            Post
           </Button>
         </FlexBetween>
       </WidgetWrapper>
