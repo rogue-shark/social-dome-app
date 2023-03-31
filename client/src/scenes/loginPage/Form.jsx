@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "state";
 import Dropzone from "react-dropzone"; //for image upload
 import FlexBetween from "components/FlexBetween";
+import { BASE_URL } from "services/helper";
 
 //YUP - validation schema
 const registerSchema = yup.object().shape({
@@ -56,6 +57,7 @@ const Form = () => {
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
 
+
   const register = async (values, onSubmitProps) => {
     // this allows us to send form info with image
     const formData = new FormData();
@@ -67,7 +69,7 @@ const Form = () => {
 
     //POST-ing registered data -- creating new user on server
     const savedUserResponse = await fetch(
-      "http://localhost:8080/auth/register",
+      `${BASE_URL}/auth/register`,
       {
         method: "POST",
         body: formData,

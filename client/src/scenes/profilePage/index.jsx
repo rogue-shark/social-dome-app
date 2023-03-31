@@ -7,15 +7,17 @@ import FriendListWidget from "scenes/widgets/FriendListWidget";
 import MyPostWidget from "scenes/widgets/MyPostWidget";
 import PostsWidget from "scenes/widgets/PostsWidget";
 import UserDetailsWidget from "scenes/widgets/UserDetailsWidget";
+import { BASE_URL } from "services/helper";
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const { userId } = useParams();
+  const loggedInUser = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
 
   const getUser = async () => {
-    const response = await fetch(`http://localhost:8080/users/${userId}`, {
+    const response = await fetch(`${BASE_URL}/users/${userId}`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -47,9 +49,9 @@ const ProfilePage = () => {
         <Box
           flexBasis={isNonMobileScreens ? "45%" : undefined}
           mt={isNonMobileScreens ? undefined : "2rem"}
-        >
-          <MyPostWidget picturePath={user.picturePath} />
-          <Box m="2rem 0" />
+        > 
+          {user._id === loggedInUser._id && <MyPostWidget picturePath={loggedInUser.picturePath} />}
+
           <PostsWidget userId={userId} isProfile />
         </Box>
       </Box>

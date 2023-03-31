@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import { BASE_URL } from "services/helper";
 
 const UserProfileImg = ({ image, size = "60px" }) => {
   return (
@@ -8,7 +9,7 @@ const UserProfileImg = ({ image, size = "60px" }) => {
         width={size}
         height={size}
         alt="user profile pic"
-        src={`http://localhost:8080/assets/${image}`}
+        src={`${BASE_URL}/assets/${image}`}
       />
     </Box>
   );
