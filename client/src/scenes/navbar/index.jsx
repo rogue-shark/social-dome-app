@@ -51,6 +51,7 @@ const Navbar = () => {
         <Typography
           className='logo'
           fontWeight='bold'
+          marginRight='1rem'
           fontSize='clamp(1rem, 1.8rem, 2.25rem)'
           color='primary'
           onClick={() => navigate('/home')}
